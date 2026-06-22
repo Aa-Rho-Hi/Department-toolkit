@@ -90,8 +90,9 @@
       margin: 52px auto 0;
       padding: 0 24px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 22px;
+      align-items: start;
     }
 
     /* ── Card ── */
@@ -226,8 +227,6 @@
     }
 
     /* CTA */
-    .card-footer { margin-top: auto; padding-top: 6px; }
-
     .btn {
       display: inline-flex;
       align-items: center;
@@ -263,6 +262,26 @@
     }
     .btn-ghost:hover { background: #f3f4f6; color: var(--text-secondary); }
 
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: background .15s, border-color .15s, color .15s;
+      flex-shrink: 0;
+    }
+
+    .btn-icon:hover { background: #f3f4f6; border-color: #d1d5db; color: var(--text-primary); }
+    .btn-icon svg { width: 17px; height: 17px; }
+
+    .card-footer { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 6px; }
+
     /* Footer */
     footer {
       text-align: center;
@@ -294,17 +313,21 @@
       <span class="badge badge-live"><span class="badge-dot"></span>Live</span>
     </div>
     <h2>Faculty Progress Report</h2>
-    <p>Ingests faculty CVs and FAR PDFs, counts publications, grants, students, and service entries using deterministic regex with optional AI classification, and outputs a consolidated Excel workbook — turning manual report compilation into an upload-and-download workflow.</p>
+    <p>Staff upload faculty CVs and FAR PDFs; the tool extracts and counts publications, grants, students, and service entries using deterministic regex (with an optional Claude classifier for semantic rules) and outputs a consolidated Excel workbook. A PDF quality gate with Tesseract OCR fallback handles scanned and low-quality pages — every count traces back to exact matched entries.</p>
     <div class="tag-row">
       <span class="tag">Streamlit</span>
       <span class="tag">pdfplumber</span>
-      <span class="tag">OCR</span>
-      <span class="tag">Excel</span>
+      <span class="tag">Tesseract OCR</span>
+      <span class="tag">Claude classifier</span>
+      <span class="tag">Google Cloud Run</span>
     </div>
     <div class="card-footer">
       <a href="https://ecen-fpr-v2-199137295144.us-central1.run.app" target="_blank" class="btn">
         Open tool
         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://github.com/Aa-Rho-Hi/Claude-FPR" target="_blank" class="btn-icon" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
       </a>
     </div>
   </div>
@@ -318,22 +341,29 @@
       <span class="badge badge-live"><span class="badge-dot"></span>Live</span>
     </div>
     <h2>EIRA</h2>
-    <p>ECE's RAG-powered chatbot — answers visitor questions about faculty, research areas, courses, and lab opportunities. Built on a fine-tuned TAMU ECE embedding model with graph-based retrieval, graph overrides for faculty accuracy, and scheduled nightly re-indexing.</p>
+    <p>RAG-powered chatbot for the ECE department's public website — answers questions about faculty, research areas, courses, and lab opportunities using a fine-tuned TAMU ECE embedding model, graph-based retrieval with area aliases and intersection query support, and the TAMU AI LLM. The index rebuilds nightly at 2 AM automatically.</p>
+    <p>EIRA is self-healing: users can flag a wrong answer directly in the chat UI, which triggers an automated Codex agent at the backend. The agent diagnoses the root cause — missing faculty entry, wrong area tag, retrieval gap — and deploys a fix without any human intervention.</p>
     <div class="tag-row">
-      <span class="tag">RAG</span>
-      <span class="tag">Graph retrieval</span>
+      <span class="tag">Next.js</span>
+      <span class="tag">FastAPI</span>
       <span class="tag">Fine-tuned embeddings</span>
-      <span class="tag">TAMU AI</span>
+      <span class="tag">Graph retrieval</span>
+      <span class="tag">TAMU AI LLM</span>
+      <span class="tag">Agentic self-healing</span>
+      <span class="tag">Google Cloud Run</span>
     </div>
     <div class="card-footer">
       <a href="https://ecen-chatbot-199137295144.us-central1.run.app" target="_blank" class="btn">
         Open EIRA
         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
+      <a href="https://github.com/Aa-Rho-Hi/ECEN-Chatbot" target="_blank" class="btn-icon" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      </a>
     </div>
   </div>
 
-  <!-- 4. GradAPPTriage -->
+  <!-- 3. GradAPPTriage -->
   <div class="card">
     <div class="card-header">
       <div class="card-icon">
@@ -342,15 +372,19 @@
       <span class="badge badge-wip">In progress</span>
     </div>
     <h2>GradAPPTriage</h2>
-    <p>Parses graduate application packets from CAS — automatically separating resumes, statements of purpose, and letters of recommendation from scanned PDFs, merging with applicant CSV data, and generating structured candidate profiles with motivation quotes to support the admissions committee.</p>
+    <p>Automates the first-pass review of graduate applications. Ingests CAS application packets (PDF) alongside a structured applicant CSV — merging by <code>cas_id</code> — then uses a content-based classifier to automatically separate resumes, statements of purpose, and letters of recommendation even without clear headings. Outputs structured candidate profiles with clean motivation quotes, GPA breakdowns, and flagged anomalies (e.g., invalid GRE totals) ready for the admissions committee.</p>
     <div class="tag-row">
       <span class="tag">Python</span>
-      <span class="tag">OCR</span>
-      <span class="tag">CAS</span>
+      <span class="tag">Tesseract OCR</span>
+      <span class="tag">CAS integration</span>
+      <span class="tag">Content classifier</span>
       <span class="tag">NLP</span>
     </div>
     <div class="card-footer">
       <a class="btn btn-ghost">Coming soon</a>
+      <a href="https://github.com/Aa-Rho-Hi/Department-toolkit" target="_blank" class="btn-icon" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      </a>
     </div>
   </div>
 

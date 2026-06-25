@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TAMU ECE: Department Tools</title>
+  <title>Agent TeraHertz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -44,7 +44,7 @@
       flex-wrap: wrap;
     }
 
-    .header-left { max-width: 560px; }
+    .header-left { max-width: 760px; }
 
     .dept-label {
       font-size: 11px;
@@ -74,9 +74,33 @@
 
     .header-meta {
       text-align: right;
-      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .meta-stat {
+      font-size: 13px;
+      color: #5a5a60;
+      font-weight: 500;
+      letter-spacing: .01em;
+    }
+
+    .meta-num {
+      font-family: 'Lora', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #500000;
+      margin-right: 4px;
+    }
+
+    .meta-sub {
+      font-size: 11px;
       color: #9a9a9e;
-      line-height: 1.8;
+      letter-spacing: .04em;
+      margin-top: 6px;
+      text-transform: uppercase;
     }
 
     /* ── Main grid ── */
@@ -283,8 +307,8 @@
   <div class="header-inner">
     <div class="header-left">
       <div class="dept-label">Texas A&amp;M University &nbsp;/&nbsp; Electrical &amp; Computer Engineering</div>
-      <h1>Department Toolkit</h1>
-      <p>Internal tools supporting faculty operations, graduate admissions, and the department's digital presence.</p>
+      <h1>Agent TeraHertz</h1>
+      <p>AI agents for academic workflows, analysis, and decision support. Launch focused web applications from one place. Agent TeraHertz is designed as a clean front door for specialized university-facing agents, from faculty reporting to graduate progress support and internship analytics.</p>
     </div>
   </div>
 </header>
@@ -337,25 +361,25 @@
     </div>
   </div>
 
-  <!-- Placeholder B -->
+  <!-- Graduate Student Degree Audit Agent -->
   <div class="card placeholder">
     <span class="status status-soon">Planned</span>
-    <h2>Next tool</h2>
+    <h2>Graduate Student Degree Audit Agent</h2>
     <hr class="divider">
-    <p>Another upcoming platform. Details to be announced.</p>
+    <p>Support graduate student progress reviews, identify degree requirement gaps, and simplify audit-oriented advising tasks.</p>
     <div class="card-footer">
-      <a class="btn btn-ghost">Stay tuned</a>
+      <a class="btn btn-ghost">Coming soon</a>
     </div>
   </div>
 
-  <!-- Placeholder C -->
+  <!-- Internship Analysis Agent -->
   <div class="card placeholder">
     <span class="status status-soon">Planned</span>
-    <h2>Next tool</h2>
+    <h2>Internship Analysis Agent</h2>
     <hr class="divider">
-    <p>Another upcoming platform. Details to be announced.</p>
+    <p>Analyze internship trends, outcomes, and program patterns with an agent focused on decision-ready insights.</p>
     <div class="card-footer">
-      <a class="btn btn-ghost">Stay tuned</a>
+      <a class="btn btn-ghost">Coming soon</a>
     </div>
   </div>
 
